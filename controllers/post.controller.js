@@ -65,8 +65,25 @@ const getAllPost = asyncHandler(async(req, res) => {
 
 })
 
+const getPost = asyncHandler(async(req, res) => {
+    const ID = req.query.ID
+
+    if(!ID) {
+        throw new ApiError(401, "Post ID is not valid")
+    }
+
+    const post = await Post.findById(ID)
+    if(!post) {
+        throw new ApiError(401, "Couldn't find post")
+    }
+    
+    return res
+    .status(200)
+    .json(200, post, "Post fetched successfully")
+})
+
 export {
     createPost,
     getAllPost,
-
+    getPost
 }
