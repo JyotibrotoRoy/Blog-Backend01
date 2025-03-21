@@ -91,6 +91,8 @@ const getPost = asyncHandler(async(req, res) => {
     }
 
     let post = cache.get(ID)
+    let likeCount = cache.get(`likes_${ID}`)
+    
     if(post) {
         return res
         .status(200)
